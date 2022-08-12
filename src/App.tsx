@@ -81,9 +81,15 @@ export default function App() {
           cool right? Connect your Ethereum wallet and wave at me!
         </div>
 
-        <button className={styles.waveButton} onClick={wave}>
-          Wave at Me
-        </button>
+        {currentAccount ? (
+          <button className={styles.waveButton} onClick={wave}>
+            Wave at Me
+          </button>
+        ) : (
+          <button className={styles.waveButton} onClick={connectWallet}>
+            Connect Wallet
+          </button>
+        )}
       </div>
     </div>
   );
