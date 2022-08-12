@@ -1,5 +1,5 @@
 {
-  "name": "web3-wave-portal",
+  "name": "web3-dapp-wave-portal",
   "private": true,
   "version": "0.0.0",
   "scripts": {
@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@metamask/providers": "^9.1.0",
     "ethers": "^5.6.9",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
