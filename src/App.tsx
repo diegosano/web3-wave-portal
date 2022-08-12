@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 
 import wavePortalContractABI from './utils/WavePortal.json';
 
 import styles from './App.module.css';
+import { Loader } from './components/Loader';
 
 const CONTRACT_ADDRESS = '0x4a68071aFAd0131C23f1fe9D1B4E0d9f3D9c2B46';
 const CONTRACT_ABI = wavePortalContractABI.abi;
@@ -48,6 +49,8 @@ export default function App() {
 
   const connectWallet = async () => {
     try {
+      setIsLoading(true);
+
       const { ethereum } = window;
 
       if (!ethereum) {
@@ -72,6 +75,8 @@ export default function App() {
       setCurrentAccount(accounts[0]);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -97,14 +102,13 @@ export default function App() {
       console.log('Retrieved total wave count...', count.toNumber());
 
       const waveTxn = await wavePortalContract.wave();
-      console.log("Mining...", waveTxn.hash);
+      console.log('Mining...', waveTxn.hash);
 
-      
       await waveTxn.wait();
-      console.log("Mined -- ", waveTxn.hash);
+      console.log('Mined -- ', waveTxn.hash);
 
       count = await wavePortalContract.getTotalWaves();
-      console.log("Retrieved total wave count...", count.toNumber());
+      console.log('Retrieved total wave count...', count.toNumber());
     } catch (error) {
       console.log(error);
     } finally {
@@ -112,24 +116,38 @@ export default function App() {
     }
   };
 
+  const renderButton = useCallback(() => {
+    if (currentAccount) {
+      return (
+        <button className={styles.waveButton} onClick={wave}>
+          Wave at Me
+        </button>
+      );
+    }
+
+    return (
+      <button className={styles.waveButton} onClick={connectWallet}>
+        Connect Wallet
+      </button>
+    );
+  }, [currentAccount]);
+
   return (
     <div className={styles.mainContainer}>
       <div className={styles.dataContainer}>
-        <div className={styles.header}>👋 Hey there!</div>
-
-        <div className={styles.bio}>
-          I am Diego Sano, and I am learning Web 3.0 and Solidity, that's pretty
-          cool right? Connect your Ethereum wallet and wave at me!
-        </div>
-
-        {currentAccount ? (
-          <button className={styles.waveButton} onClick={wave}>
-            Wave at Me
-          </button>
+        {isLoading ? (
+          <Loader />
         ) : (
-          <button className={styles.waveButton} onClick={connectWallet}>
-            Connect Wallet
-          </button>
+          <>
+            <div className={styles.header}>👋 Hey there!</div>
+
+            <div className={styles.bio}>
+              Myu name is Diego Sano, and I am learning Web 3.0 and Solidity, that's
+              pretty cool right? Connect your Ethereum wallet and wave at me!
+            </div>
+
+            {renderButton()}
+          </>
         )}
       </div>
     </div>
