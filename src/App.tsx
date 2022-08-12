@@ -142,7 +142,7 @@ export default function App() {
             <div className={styles.header}>👋 Hey there!</div>
 
             <div className={styles.bio}>
-              Myu name is Diego Sano, and I am learning Web 3.0 and Solidity, that's
+              My name is Diego Sano, and I am learning Web 3.0 and Solidity, that's
               pretty cool right? Connect your Ethereum wallet and wave at me!
             </div>
 
