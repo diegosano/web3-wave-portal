@@ -27,6 +27,15 @@
   opacity: 0.8;
 }
 
+.bio a {
+  color: #50fa7b;
+  text-decoration: none;
+}
+
+.bio a:hover {
+  text-decoration: underline;
+}
+
 .waveButton {
   cursor: pointer;
   margin-top: 1rem;

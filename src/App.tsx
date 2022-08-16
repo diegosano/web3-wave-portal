@@ -197,9 +197,12 @@ export default function App() {
             <h1 className={styles.header}>👋 Hey there!</h1>
 
             <div className={styles.bio}>
-              My name is Diego Sano, and I am learning Web 3.0 and Solidity,
-              that's pretty cool right? Connect your Ethereum wallet and wave at
-              me!
+              My name is{' '}
+              <a href="https://www.linkedin.com/in/diego-sano/" target="_blank">
+                Diego Sano
+              </a>
+              , and I am learning Web 3.0 and Solidity, that's pretty cool
+              right? Connect your Ethereum wallet and wave at me!
             </div>
 
             {renderButton()}
