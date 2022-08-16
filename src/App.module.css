@@ -16,19 +16,19 @@
 
 .header {
   text-align: center;
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: 600;
 }
 
 .bio {
   text-align: center;
-  margin-top: 16px;
+  margin: 1rem 0;
   opacity: 0.8;
 }
 
 .waveButton {
   cursor: pointer;
-  margin-top: 16px;
+  margin-top: 1rem;
   padding: 8px;
   border: 0;
   border-radius: 8px;
@@ -41,4 +41,18 @@
 
 .waveButton:hover {
   opacity: 0.8;
+}
+
+.waveContainer {
+  background-color: red;
+  margin-top: 1rem;
+  padding: 0.5rem;
+}
+
+.waveInput {
+  background: #282a36;
+  color: #f8f8f2;
+  border: 1px solid #44475a;
+  border-radius: 8px;
+  padding: 1rem;
 }
