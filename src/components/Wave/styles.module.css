@@ -1,0 +1,29 @@
+.comment {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  flex: 1;
+  flex-direction: column;
+  background: #282a36;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.comment header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.authorAndTime strong {
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.6rem;
+}
+
+.authorAndTime time {
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1.6rem;
+  opacity: 0.8;
+}
