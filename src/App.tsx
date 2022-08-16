@@ -5,12 +5,13 @@ import wavePortalContractABI from './utils/WavePortal.json';
 
 import styles from './App.module.css';
 import { Loader } from './components/Loader';
+import { Wave } from './components/Wave';
 
 const CONTRACT_ADDRESS = '0x882F41f098009d1eA5c4490041EFDb0231d8F60a';
 const CONTRACT_ABI = wavePortalContractABI.abi;
 const MILLISECONDS = 1000;
 
-interface Wave {
+export interface IWave {
   address: string;
   timestamp: Date;
   message: string;
@@ -24,7 +25,7 @@ interface SmartContractWave {
 
 export default function App() {
   const [currentAccount, setCurrentAccount] = useState('');
-  const [allWaves, setAllWaves] = useState<Wave[]>([]);
+  const [allWaves, setAllWaves] = useState<IWave[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const messageInput = useRef<HTMLInputElement>(null);
 
@@ -166,7 +167,7 @@ export default function App() {
         <>
           <input
             type="text"
-            placeholder="Adicione uma nova tarefa"
+            placeholder="Leave me a message"
             ref={messageInput}
             className={styles.waveInput}
             required
@@ -193,7 +194,7 @@ export default function App() {
           <Loader />
         ) : (
           <>
-            <div className={styles.header}>👋 Hey there!</div>
+            <h1 className={styles.header}>👋 Hey there!</h1>
 
             <div className={styles.bio}>
               My name is Diego Sano, and I am learning Web 3.0 and Solidity,
@@ -203,16 +204,17 @@ export default function App() {
 
             {renderButton()}
 
-            {allWaves.map((wave) => (
-              <div
-                key={wave.timestamp.getTime()}
-                className={styles.waveContainer}
-              >
-                <div>Address: {wave.address}</div>
-                <div>Time: {wave.timestamp.toLocaleDateString()}</div>
-                <div>Message: {wave.message}</div>
-              </div>
-            ))}
+            <div className={styles.waveList}>
+              <h2> Wave history </h2>
+              {allWaves.map((wave) => (
+                <Wave
+                  key={wave.timestamp.getTime()}
+                  message={wave.message}
+                  publishedAt={wave.timestamp}
+                  address={wave.address}
+                />
+              ))}
+            </div>
           </>
         )}
       </div>
